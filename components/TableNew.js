@@ -9,10 +9,12 @@ import {
 
 const TableNew = props => {
 
-    const renderItem = (item) => {
-        <View style={styles.item}>
-            <Text style={styles.itemText}>{ item }</Text>
-        </View>
+    const renderItem = ({ item }) => {
+        return (
+            <View style={styles.listWrapper}>
+                <Text style={styles.rowText}>{ item }</Text>
+            </View>
+        );
     }
 
     return (
@@ -20,19 +22,22 @@ const TableNew = props => {
             <FlatList
                 data={props.data}
                 renderItem={renderItem}
-                ListHeaderComponent={<Text>Header</Text>}
-                ListFooterComponent={<Text>Footer</Text>}
             />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    item: {
-        backgroundColor: '#f9c2ff'
+    listWrapper: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        borderBottomWidth: .5
     },
-    itemText: {
-        fontSize: 32
+    rowText: {
+        flex: 1,
+        fontSize: 16,
+        paddingHorizontal: 2,
+        paddingVertical: 10
     }
 });
 

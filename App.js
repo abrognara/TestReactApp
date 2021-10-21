@@ -10,6 +10,7 @@ import React from 'react';
 import TextSection from './components/TextSection';
 import Datastore from './components/Datastore';
 import IngredientsPage from './components/IngredientsPage';
+import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -41,26 +42,28 @@ const App: () => Node = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-            <View style={styles.rootView}>
-              <TextSection title="Section Title">
-                Section description
-              </TextSection>
-              <IngredientsPage
-                datastore={datastore}
-                placeholder="Enter an item"
-              />
-            </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={backgroundStyle}>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={backgroundStyle}>
+          <View
+            style={{
+              backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            }}>
+              <View style={styles.rootView}>
+                <TextSection title="Section Title">
+                  Section description
+                </TextSection>
+                <IngredientsPage
+                  datastore={datastore}
+                  placeholder="Enter an item"
+                />
+              </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 

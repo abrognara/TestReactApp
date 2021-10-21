@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 // import Table from './Table';
-import TableNew from './TableNew';
+// import TableNew from './TableNew';
+import StaticTable from './StaticTable';
 
 import {
     TextInput,
+    Text,
     View,
-    Button
+    TouchableOpacity,
+    StyleSheet
   } from 'react-native';
 
 const IngredientsPage = (props) => {
@@ -15,12 +18,12 @@ const IngredientsPage = (props) => {
 
     useEffect(() => {
       loadData();
-      console.log(data);
     });
 
     const submitInput = () => {
       props.datastore.addIngredient(input);
       setInput('');
+      loadData();
     };
 
     const handleClearAll = () => {
@@ -37,23 +40,45 @@ const IngredientsPage = (props) => {
           value={input}
           defaultValue=""
           onChangeText={text => setInput(text)}
-          onSubmitEditing={e => console.log(`onSubmitEditing called ${e}`)}
+          onSubmitEditing={() => submitInput()}
         />
-        <Button
-          title="Submit"
-          color="#f194ff"
-          onPress={() => submitInput()}
-        />
-        <Button
-          title="Clear All"
-          color="#f194ff"
-          onPress={() => handleClearAll()}
-        />
-        <TableNew
+        <View style={{ paddingTop: 18, paddingBottom: 18 }}>
+          <TouchableOpacity
+            style={{ ...styles.button, ...styles.green}}
+            onPress={submitInput}
+          >
+            <Text>Submit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ ...styles.button, ...styles.red}}
+            onPress={handleClearAll}
+          >
+            <Text>Clear All</Text>
+          </TouchableOpacity>
+        </View>
+        <StaticTable
+          title="Ingredients"
           data={data.ingredients}
+        />
+        <StaticTable
+          title="Steps"
+          data={data.steps}
         />
       </View>
     );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    padding: 10
+  },
+  green: {
+    backgroundColor: "#89ff85"
+  },
+  red: {
+    backgroundColor: "#ff7770"
+  }
+});
 
 export default IngredientsPage;
