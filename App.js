@@ -7,35 +7,26 @@
  */
 
 import React from 'react';
-import TextSection from './components/TextSection';
+import { StandardScreenStyle } from './components/standard-screen-style';
 import Datastore from './components/Datastore';
-import IngredientsPage from './components/IngredientsPage';
+import Home from './components/Home';
+import ShoppingList from './components/ShoppingList';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type {Node} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
   useColorScheme,
-  View,
 } from 'react-native';
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
+  Colors
 } from 'react-native/Libraries/NewAppScreen';
 
+const Stack = createNativeStackNavigator();
+const datastore = new Datastore();
+
 const App: () => Node = () => {
-
   const isDarkMode = useColorScheme() === 'dark';
-
-  const datastore = new Datastore();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -43,35 +34,14 @@ const App: () => Node = () => {
 
   return (
     <NavigationContainer>
-      <SafeAreaView style={backgroundStyle}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}>
-          <View
-            style={{
-              backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            }}>
-              <View style={styles.rootView}>
-                <TextSection title="Section Title">
-                  Section description
-                </TextSection>
-                <IngredientsPage
-                  datastore={datastore}
-                  placeholder="Enter an item"
-                />
-              </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <StandardScreenStyle.Provider value={ backgroundStyle }>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="ShoppingList" component={ShoppingList} />
+        </Stack.Navigator>
+      </StandardScreenStyle.Provider>
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  rootView: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  }
-});
 
 export default App;
