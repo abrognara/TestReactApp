@@ -1,5 +1,5 @@
 import React from 'react';
-import { StandardScreenStyle } from './standard-screen-style';
+import { ThemeContext } from './ThemeContext';
 
 import {
     SafeAreaView,
@@ -11,20 +11,20 @@ import {
 
 const BasicScreenView = ({ children }) => {
     return (
-      <StandardScreenStyle.Consumer>
+      <ThemeContext.Consumer>
         {theme => {
-          console.log({ ...styles.rootView, ...theme });
+          const viewLayoutAndTheme = { ...styles.rootView, backgroundColor: theme.background };
+          console.log('viewLayoutAndTheme: ' + JSON.stringify(viewLayoutAndTheme));
           return (
-            <SafeAreaView style={theme}>
+            <SafeAreaView style={viewLayoutAndTheme}>
               <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={{ ...styles.rootView, ...theme }}>
+                contentInsetAdjustmentBehavior="automatic">
                 {children}
               </ScrollView>
             </SafeAreaView>
           );
         }}
-      </StandardScreenStyle.Consumer>
+      </ThemeContext.Consumer>
     );
 };
 

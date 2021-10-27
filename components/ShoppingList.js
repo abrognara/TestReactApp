@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { DatastoreContext } from './datastore-context';
 import BasicScreenView from './BasicScreenView';
+import StaticTable from './StaticTable';
 
 import {
     Text,
@@ -8,11 +10,19 @@ import {
 
 const ShoppingList = () => {
     return (
-        <BasicScreenView>
-            <View>
-                <Text>Text for the shopping list page.</Text>
-            </View>
-        </BasicScreenView>
+        <DatastoreContext.Consumer>
+            {datastore => {
+                const data = datastore.readAll();
+                return (
+                    <BasicScreenView>
+                        <StaticTable
+                            title="Ingredients"
+                            data={data.ingredients}
+                        />
+                    </BasicScreenView>
+                )}
+            }
+        </DatastoreContext.Consumer>
     );
 };
 
