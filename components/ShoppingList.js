@@ -4,11 +4,21 @@ import BasicScreenView from './BasicScreenView';
 import StaticTable from './StaticTable';
 
 import {
+    Button,
     Text,
     View
 } from 'react-native';
 
-const ShoppingList = () => {
+const ShoppingList = ({ navigation }) => {
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <Button title="+" onPress={() => navigation.navigate('EditListScreen')} />
+            )
+        });
+    }, [navigation]);
+
     return (
         <DatastoreContext.Consumer>
             {datastore => {

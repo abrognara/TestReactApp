@@ -16,6 +16,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type {Node} from 'react';
 import { useColorScheme } from 'react-native';
+import EditListScreen from './components/EditListScreen';
 
 const Stack = createNativeStackNavigator();
 const datastore = new Datastore();
@@ -32,8 +33,23 @@ const App: () => Node = () => {
       <ThemeContext.Provider value={ isDarkMode ? themes.dark : themes.light }>
         <DatastoreContext.Provider value={ datastore }>
           <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={ Home } />
-            <Stack.Screen name="ShoppingList" component={ ShoppingList } />
+            <Stack.Screen
+              name="Home"
+              component={ Home }
+              options={{
+                title: 'Daily Overview'
+              }}
+            />
+            <Stack.Screen
+              name="ShoppingList"
+              component={ ShoppingList }
+              options={{
+                title: 'Shopping List'
+              }}
+            />
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+              <Stack.Screen name="EditListScreen"component={ EditListScreen } />
+            </Stack.Group>
           </Stack.Navigator>
         </DatastoreContext.Provider>
       </ThemeContext.Provider>
