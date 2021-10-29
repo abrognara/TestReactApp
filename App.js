@@ -14,6 +14,7 @@ import Home from './components/Home';
 import ShoppingList from './components/ShoppingList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type {Node} from 'react';
 import { useColorScheme } from 'react-native';
 import EditListScreen from './components/EditListScreen';
@@ -23,11 +24,6 @@ const datastore = new Datastore();
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? themes.dark : themes.light
-  // };
-
   return (
     <NavigationContainer>
       <ThemeContext.Provider value={ isDarkMode ? themes.dark : themes.light }>
@@ -36,16 +32,7 @@ const App: () => Node = () => {
             <Stack.Screen
               name="Home"
               component={ Home }
-              options={{
-                title: 'Daily Overview'
-              }}
-            />
-            <Stack.Screen
-              name="ShoppingList"
-              component={ ShoppingList }
-              options={{
-                title: 'Shopping List'
-              }}
+              options={{ headerShown: false }}
             />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
               <Stack.Screen name="EditListScreen"component={ EditListScreen } />

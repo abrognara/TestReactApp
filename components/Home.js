@@ -1,22 +1,24 @@
 import React from 'react';
+import OverviewScreen from './OverviewScreen';
+import ShoppingList from './ShoppingList';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import {
-    View,
-    Text,
-    Button
-} from 'react-native';
-
-import BasicScreenView from './BasicScreenView';
+const Tabs = createBottomTabNavigator();
 
 const Home = ({ navigation }) => {
     return (
-        <BasicScreenView>
-            <Text>Home Page</Text>
-            <Button
-                title="Shopping List"
-                onPress={() => navigation.navigate('ShoppingList')}
+        <Tabs.Navigator>
+            <Tabs.Screen
+                name="OverviewScreen" 
+                component={OverviewScreen}
+                options={{ title: 'Daily Overview' }}
             />
-        </BasicScreenView>
+            <Tabs.Screen
+                name="ShoppingList"
+                component={ShoppingList}
+                options={{ title: 'Shopping List' }}
+            />
+        </Tabs.Navigator>
     );
 };
 

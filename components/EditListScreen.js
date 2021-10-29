@@ -19,7 +19,7 @@ const EditListScreen = ({ navigation }) => {
 
     useEffect(() => {
         navigation.setOptions({ 
-            headerLeft: () => <Button title="Close" onPress={() => navigation.goBack()} /> 
+            headerLeft: () => <Button title="Close" onPress={() => navigation.goBack()} />
         });
     })
 
