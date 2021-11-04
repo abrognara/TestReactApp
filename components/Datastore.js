@@ -2,9 +2,21 @@ export default class Datastore {
 
     constructor() {
         this.datastore = { 
+            recipes: {},
             ingredients: ["Olive Oil", "Minced Garlic", "Salt", "Pepper"],
             steps: ["Preheat oven to 400F", "Chop asparagus and add to bowl", "Add olive oil to bowl"]
         };
+    }
+
+    // recipeName = string
+    // ingredients = Ingredient[]
+    // steps = string[]
+    addRecipe(recipeName, ingredientsList, stepsList) {
+        this.datastore.recipes[recipeName] = { ingredients: ingredientsList, steps: stepsList }
+    }
+
+    getAllRecipes() {
+        return this.datastore.recipes;
     }
 
     addIngredient(v) {

@@ -1,17 +1,28 @@
 import React from 'react';
-import BasicScreenView from './BasicScreenView';
-import { Text, Button } from 'react-native';
+import { ThemeContext } from './ThemeContext';
+import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 
 const OverviewScreen = ({ navigation }) => {
     return (
-        <BasicScreenView>
-            <Text>Overview Page</Text>
-            <Button
-                title="Shopping List"
-                onPress={() => navigation.navigate('ShoppingList')}
-            />
-        </BasicScreenView>
+        <ThemeContext.Consumer>
+        {theme => {
+          const viewLayoutAndTheme = { ...styles.rootView, backgroundColor: theme.background };
+          console.log('viewLayoutAndTheme: ' + JSON.stringify(viewLayoutAndTheme));
+          return (
+            <SafeAreaView style={viewLayoutAndTheme}>
+              <Text>Sunday, October 31st</Text>
+            </SafeAreaView>
+          );
+        }}
+      </ThemeContext.Consumer>
     );
 };
+
+const styles = StyleSheet.create({
+    rootView: {
+      marginTop: 32,
+      paddingHorizontal: 24,
+    }
+});
 
 export default OverviewScreen;

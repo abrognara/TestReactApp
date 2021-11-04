@@ -9,7 +9,7 @@ import {
     View,
   } from 'react-native';
 
-const BasicScreenView = ({ children }) => {
+const RootView = ({ children }) => {
     return (
       <ThemeContext.Consumer>
         {theme => {
@@ -17,10 +17,7 @@ const BasicScreenView = ({ children }) => {
           console.log('viewLayoutAndTheme: ' + JSON.stringify(viewLayoutAndTheme));
           return (
             <SafeAreaView style={viewLayoutAndTheme}>
-              <ScrollView
-                contentInsetAdjustmentBehavior="automatic">
-                {children}
-              </ScrollView>
+              {children}
             </SafeAreaView>
           );
         }}
@@ -35,4 +32,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default BasicScreenView;
+export default RootView;

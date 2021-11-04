@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DatastoreContext } from './datastore-context';
-import BasicScreenView from './BasicScreenView';
+import RootView from './RootView';
 import StaticTable from './StaticTable';
 
 import {
@@ -24,12 +24,12 @@ const ShoppingList = ({ navigation }) => {
             {datastore => {
                 const data = datastore.readAll();
                 return (
-                    <BasicScreenView>
+                    <RootView>
                         <StaticTable
                             title="Ingredients"
                             data={data.ingredients}
                         />
-                    </BasicScreenView>
+                    </RootView>
                 )}
             }
         </DatastoreContext.Consumer>

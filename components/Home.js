@@ -2,6 +2,7 @@ import React from 'react';
 import OverviewScreen from './OverviewScreen';
 import ShoppingList from './ShoppingList';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import RecipesScreen from './RecipesScreen';
 
 const Tabs = createBottomTabNavigator();
 
@@ -17,6 +18,11 @@ const Home = ({ navigation }) => {
                 name="ShoppingList"
                 component={ShoppingList}
                 options={{ title: 'Shopping List' }}
+            />
+            <Tabs.Screen
+                name="RecipesScreen"
+                component={RecipesScreen}
+                options={{ title: 'Recipes' }}
             />
         </Tabs.Navigator>
     );
