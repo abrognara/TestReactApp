@@ -1,6 +1,8 @@
 import React from 'react';
 import { VirtualizedList, Text, View, TouchableHighlight } from 'react-native';
+import GenericAddItemView from './GenericAddItemView';
 import RootView from './RootView';
+import { DatastoreContext } from './datastore-context';
 
 const RecipesScreen = ({ navigation }) => {
     const mockRecipes = {
@@ -23,14 +25,21 @@ const RecipesScreen = ({ navigation }) => {
     );
 
     return (
-        <RootView>
-            <VirtualizedList
-                data={recipeKeys}
-                getItem={getItem}
-                renderItem={({ item }) => <Row text={item.recipeName} />}
-                getItemCount={() => recipeKeys.length}
-            />
-        </RootView>
+        <DatastoreContext.Consumer>
+            {datastore => (
+                <RootView>
+                    <GenericAddItemView usingAddItemScreen="EditListScreen" navigation={navigation}>
+                        <VirtualizedList
+                            data={recipeKeys}
+                            getItem={getItem}
+                            renderItem={({ item }) => <Row text={item.recipeName} />}
+                            getItemCount={() => recipeKeys.length}
+                        />
+                    </GenericAddItemView>
+                </RootView>
+            )}
+
+        </DatastoreContext.Consumer>
     );
 };
 

@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { View, Text } from 'react-native';
 import { DatastoreContext } from './datastore-context';
 
 const RecipeScreen = ({ route, navigation }) => {
+    useEffect(() => {
+        if (route.params?.objToUpdate) {
+            // update datastore
+        }
+    }, [route.params?.objToUpdate]);
+
     const { key } = route.params; // use key to fetch recipe from datastore
+
     return (
         <DatastoreContext.Consumer>
             {datastore => {

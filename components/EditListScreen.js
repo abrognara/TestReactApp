@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import RootView from './RootView';
 import {
     Text,
     TextInput,
@@ -24,7 +24,7 @@ const EditListScreen = ({ navigation }) => {
     })
 
     return (
-        <View style={styles.rootView}>
+        <RootView>
             <TextInput
                 placeholder="Enter an item"
                 value={input}
@@ -35,16 +35,8 @@ const EditListScreen = ({ navigation }) => {
                 title="Add"
                 onPress={handleSubmit}
             />
-        </View>
+        </RootView>
     );
 };
-
-// TODO dont copy-paste this from other component
-const styles = StyleSheet.create({
-    rootView: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    }
-});
 
 export default EditListScreen;
