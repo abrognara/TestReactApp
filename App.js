@@ -18,6 +18,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type {Node} from 'react';
 import { useColorScheme } from 'react-native';
 import EditListScreen from './components/EditListScreen';
+import RecipeScreen from './components/RecipeScreen';
 
 const Stack = createNativeStackNavigator();
 const datastore = new Datastore();
@@ -34,8 +35,9 @@ const App: () => Node = () => {
               component={ Home }
               options={{ headerShown: false }}
             />
+            <Stack.Screen name="RecipeScreen" component={ RecipeScreen } />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
-              <Stack.Screen name="EditListScreen"component={ EditListScreen } />
+              <Stack.Screen name="EditListScreen" component={ EditListScreen } />
             </Stack.Group>
           </Stack.Navigator>
         </DatastoreContext.Provider>

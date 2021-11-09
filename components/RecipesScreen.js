@@ -4,29 +4,7 @@ import RootView from './RootView';
 
 const RecipesScreen = ({ navigation }) => {
     const mockRecipes = {
-        'Chop Suey': {
-            ingredients: [],
-            steps: []
-        },
-        'Chicken Parmesan': {},
-        'Smoked Brisket': {},
-        'Recipe4': {},
-        'Recipe5': {},
-        'Recipe6': {},
-        'Recipe7': {},
-        'Recipe8': {},
-        'Recipe9': {},
-        'Recipe10': {},
-        'Recipe11': {},
-        'Recipe12': {},
-        'Recipe13': {},
-        'Recipe14': {},
-        'Recipe15': {},
-        'Recipe16': {},
-        'Recipe17': {},
-        'Recipe18': {},
-        'Recipe19': {},
-        'Recipe20': {}
+        'Spaghetti and Meatballs': {}
     };
 
     const recipeKeys = Object.keys(mockRecipes);
@@ -37,7 +15,7 @@ const RecipesScreen = ({ navigation }) => {
     });
 
     const Row = ({ text }) => (
-        <TouchableHighlight onPress={() => console.log(`Pressed ${text}`)}>
+        <TouchableHighlight onPress={() => navigation.navigate('RecipeScreen', { key: text })}>
             <View style={{ backgroundColor: '#ffffff', height: 50, borderBottomWidth: 2 }}>
                 <Text style={{ fontSize: 24 }}>{ text }</Text>
             </View>
