@@ -28,7 +28,7 @@ const RecipesScreen = ({ navigation }) => {
         <DatastoreContext.Consumer>
             {datastore => (
                 <RootView>
-                    <GenericAddItemView usingAddItemScreen="EditListScreen" navigation={navigation}>
+                    <GenericAddItemView usingAddItemScreen="AddRecipeScreen" navigation={navigation}>
                         <VirtualizedList
                             data={recipeKeys}
                             getItem={getItem}

@@ -14,10 +14,9 @@ import Home from './components/Home';
 import ShoppingList from './components/ShoppingList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type {Node} from 'react';
 import { useColorScheme } from 'react-native';
-import EditListScreen from './components/EditListScreen';
+import AddRecipeScreen from './components/AddRecipeScreen';
 import RecipeScreen from './components/RecipeScreen';
 
 const Stack = createNativeStackNavigator();
@@ -37,7 +36,7 @@ const App: () => Node = () => {
             />
             <Stack.Screen name="RecipeScreen" component={ RecipeScreen } />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
-              <Stack.Screen name="EditListScreen" component={ EditListScreen } />
+              <Stack.Screen name="AddRecipeScreen" component={ AddRecipeScreen } />
             </Stack.Group>
           </Stack.Navigator>
         </DatastoreContext.Provider>

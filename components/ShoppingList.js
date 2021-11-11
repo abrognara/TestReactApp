@@ -14,7 +14,7 @@ const ShoppingList = ({ navigation }) => {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <Button title="+" onPress={() => navigation.navigate('EditListScreen')} />
+                <Button title="+" onPress={() => navigation.navigate('AddRecipeScreen')} />
             )
         });
     }, [navigation]);
