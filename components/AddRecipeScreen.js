@@ -7,6 +7,7 @@ import {
     StyleSheet,
     Button
 } from 'react-native';
+import DynamicList from './DynamicList';
 
 const AddRecipeScreen = ({ navigation }) => {
     const [formStep, setFormStep] = useState(1);
@@ -25,7 +26,11 @@ const AddRecipeScreen = ({ navigation }) => {
         }, [navigation]);
     })
 
+    // TODO make this an array
     const renderFormStep = () => {
+        if (formStep < 1) return (
+            <DynamicList />
+        );
         if (formStep < 2) return (
             <TextInput
                 placeholder="Enter a name for the recipe"
