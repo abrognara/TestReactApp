@@ -18,6 +18,7 @@ import type {Node} from 'react';
 import { useColorScheme } from 'react-native';
 import AddRecipeScreen from './components/AddRecipeScreen';
 import RecipeScreen from './components/RecipeScreen';
+import EditableListItemScreen from './components/EditableListItemScreen';
 
 const Stack = createNativeStackNavigator();
 const datastore = new Datastore();
@@ -35,6 +36,7 @@ const App: () => Node = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen name="RecipeScreen" component={ RecipeScreen } />
+            <Stack.Screen name="EditableListItemScreen" component={ EditableListItemScreen } />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
               <Stack.Screen name="AddRecipeScreen" component={ AddRecipeScreen } />
             </Stack.Group>

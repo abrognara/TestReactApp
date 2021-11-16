@@ -29,7 +29,7 @@ const AddRecipeScreen = ({ navigation }) => {
     // TODO make this an array
     const renderFormStep = () => {
         if (formStep < 1) return (
-            <DynamicList />
+            <DynamicList navigation={navigation} />
         );
         if (formStep < 2) return (
             <TextInput

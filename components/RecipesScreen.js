@@ -24,6 +24,7 @@ const RecipesScreen = ({ navigation }) => {
         </TouchableHighlight>
     );
 
+    // TODO make DynamicList a parent component of this
     return (
         <DatastoreContext.Consumer>
             {datastore => (
