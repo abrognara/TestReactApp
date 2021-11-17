@@ -37,9 +37,9 @@ const App: () => Node = () => {
             />
             <Stack.Screen name="RecipeScreen" component={ RecipeScreen } />
             <Stack.Screen name="EditableListItemScreen" component={ EditableListItemScreen } />
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            {/* <Stack.Group screenOptions={{ presentation: 'modal' }}> */}
               <Stack.Screen name="AddRecipeScreen" component={ AddRecipeScreen } />
-            </Stack.Group>
+            {/* </Stack.Group> */}
           </Stack.Navigator>
         </DatastoreContext.Provider>
       </ThemeContext.Provider>

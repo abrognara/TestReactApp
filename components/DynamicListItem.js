@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     View,
     Text,
@@ -6,17 +6,20 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+// TODO move this definition back into DynamicList file?
 const DynamicListItem = props => {
-    console.log(props.stackIdx);
-    console.log(props.text);
     return (
         <TouchableHighlight 
             onPress={() => 
                 props.navigation.navigate('EditableListItemScreen', 
-                { text: props.text, stackidx: props.stackIdx })}
+                { 
+                    text: props.text,
+                    stackIdx: props.stackIdx
+                })
+            }
         >
-            <View>
-                <Text>{ props.text }</Text>
+            <View style={styles.row}>
+                <Text style={styles.textStyle}>{ props.text }</Text>
             </View>
         </TouchableHighlight>
     );
@@ -25,11 +28,11 @@ const DynamicListItem = props => {
 const styles = StyleSheet.create({
     row: {
         backgroundColor: '#ffffff', 
-        height: 25,
-        paddingVertical: 12
+        height: 35,
+        borderBottomWidth: 0.5
     },
     textStyle: {
-        fontSize: 24
+        fontSize: 20
     }
 });
 

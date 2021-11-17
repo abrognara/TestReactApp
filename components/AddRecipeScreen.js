@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import DynamicList from './DynamicList';
 
-const AddRecipeScreen = ({ navigation }) => {
+const AddRecipeScreen = ({ navigation, route }) => {
     const [formStep, setFormStep] = useState(1);
     const [recipeName, setRecpeName] = useState('');
     const [ingredients, setIngredients] = useState('');
@@ -29,7 +29,7 @@ const AddRecipeScreen = ({ navigation }) => {
     // TODO make this an array
     const renderFormStep = () => {
         if (formStep < 1) return (
-            <DynamicList navigation={navigation} />
+            <DynamicList navigation={navigation} route={route} />
         );
         if (formStep < 2) return (
             <TextInput

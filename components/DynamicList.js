@@ -17,8 +17,26 @@ const DynamicList = props => {
         setInput(''); // clear input
     };
 
-    // for debug
-    useEffect(() => console.log(textInStack), [textInStack]);
+    useEffect(() => {
+        const submitUpdate = props.route.params?.submitUpdate;
+        const submitDelete = props.route.params?.submitDelete;
+        console.log(`update ${JSON.stringify(submitUpdate)} delete ${JSON.stringify(submitDelete)}`);
+        if (submitUpdate) {
+            // is there a way to do this update without creating a new array?
+            const { idx, updatedText } = submitUpdate;
+            let textInStackCopy = [...textInStack];
+            textInStackCopy[idx] = updatedText;
+            setTextInStack(textInStackCopy);
+            props.navigation.setParams({ submitUpdate: null });
+        }
+        else if (submitDelete) {
+            const { idx } = submitDelete;
+            let textInStackCopy = [...textInStack];
+            textInStackCopy.splice(idx, 1);
+            setTextInStack(textInStackCopy);
+            props.navigation.setParams({ submitDelete: null });
+        }
+    }, [props.route.params?.submitUpdate, props.route.params?.submitDelete]);
 
     // **** for Virtualized list ****
     const getItem = () => {
@@ -28,8 +46,13 @@ const DynamicList = props => {
     };
 
     const renderItem = ({ index }) => {
-        return <DynamicListItem text={textInStack[index]} stackIdx={index} navigation={props.navigation} />
+        return <DynamicListItem 
+            text={textInStack[index]} 
+            stackIdx={index}
+            navigation={props.navigation}
+        />
     };
+    // **** ****
 
     return (
         // try and anchor TextInput to bottom of screen but move up with keyboard when selected
