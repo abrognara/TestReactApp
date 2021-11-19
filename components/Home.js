@@ -2,7 +2,7 @@ import React from 'react';
 import OverviewScreen from './OverviewScreen';
 import ShoppingList from './ShoppingList';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import RecipesScreen from './RecipesScreen';
+import RecipeListScreen from './RecipeListScreen';
 
 const Tabs = createBottomTabNavigator();
 
@@ -20,8 +20,8 @@ const Home = ({ navigation }) => {
                 options={{ title: 'Shopping List' }}
             />
             <Tabs.Screen
-                name="RecipesScreen"
-                component={RecipesScreen}
+                name="RecipeListScreen"
+                component={RecipeListScreen}
                 options={{ title: 'Recipes' }}
             />
         </Tabs.Navigator>

@@ -7,7 +7,10 @@ import {
     VirtualizedList
 } from 'react-native';
 import DynamicListItem from './DynamicListItem';
-
+/*
+    + TextInput to add user input in a growable list
+    + Can select rows of input to edit/delete them from the list
+*/
 const DynamicList = props => {
     const [textInStack, setTextInStack] = useState([]);
     const [input, setInput] = useState('');

@@ -17,7 +17,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type {Node} from 'react';
 import { useColorScheme } from 'react-native';
 import AddRecipeScreen from './components/AddRecipeScreen';
-import RecipeScreen from './components/RecipeScreen';
+import RecipeDetailsScreen from './components/RecipeDetailsScreen';
 import EditableListItemScreen from './components/EditableListItemScreen';
 
 const Stack = createNativeStackNavigator();
@@ -35,7 +35,7 @@ const App: () => Node = () => {
               component={ Home }
               options={{ headerShown: false }}
             />
-            <Stack.Screen name="RecipeScreen" component={ RecipeScreen } />
+            <Stack.Screen name="RecipeDetailsScreen" component={ RecipeDetailsScreen } />
             <Stack.Screen name="EditableListItemScreen" component={ EditableListItemScreen } />
             {/* <Stack.Group screenOptions={{ presentation: 'modal' }}> */}
               <Stack.Screen name="AddRecipeScreen" component={ AddRecipeScreen } />

@@ -20,12 +20,6 @@ const AddRecipeScreen = ({ navigation, route }) => {
         setRecpeName('');
     };
 
-    useEffect(() => {
-        navigation.setOptions({ 
-            headerLeft: () => <Button title="Close" onPress={() => navigation.goBack()} />
-        }, [navigation]);
-    })
-
     // TODO make this an array
     const renderFormStep = () => {
         if (formStep < 1) return (

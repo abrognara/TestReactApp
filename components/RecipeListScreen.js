@@ -4,7 +4,7 @@ import GenericAddItemView from './GenericAddItemView';
 import RootView from './RootView';
 import { DatastoreContext } from './datastore-context';
 
-const RecipesScreen = ({ navigation }) => {
+const RecipeListScreen = ({ navigation }) => {
     const mockRecipes = {
         'Spaghetti and Meatballs': {}
     };
@@ -44,4 +44,4 @@ const RecipesScreen = ({ navigation }) => {
     );
 };
 
-export default RecipesScreen;
+export default RecipeListScreen;

@@ -5,7 +5,7 @@ const GenericAddItemView = (props) => {
     useEffect(() => {
         props.navigation.setOptions({
             headerRight: () => (
-                <Button title="+" onPress={() => props.navigation.navigate(props.usingAddItemScreen)} />
+                <Button title="Add" onPress={() => props.navigation.navigate(props.usingAddItemScreen)} />
             )
         });
     }, [props.navigation]);
