@@ -12,7 +12,6 @@ const RecipeListScreen = ({ navigation, route }) => {
 
     const recipeKeys = Object.keys(mockRecipes);
 
-    // TODO make DynamicList a parent component of this
     return (
         <DatastoreContext.Consumer>
             {datastore => (
