@@ -12,49 +12,63 @@ import DynamicList from './DynamicList';
 const AddRecipeScreen = ({ navigation, route }) => {
     const [formStep, setFormStep] = useState(1);
     const [recipeName, setRecpeName] = useState('');
-    const [ingredients, setIngredients] = useState('');
-    const [steps, setSteps] = useState('');
+    const [stepsList, setStepsList] = useState([]); // use as props to DynamicList for steps
+    const [ingredientsList, setIngredientsList] = useState([]); // use as props to DynamicList for steps
 
     const handleSubmit = () => {
         console.log(recipeName);
-        setRecpeName('');
+        // do submit to datastore
+        navigation.goBack();
     };
 
-    // TODO make this an array
+    const PrevStepBtn = () => <Button title="Back" onPress={() => setFormStep(formStep - 1)} />;
+
+    const NextStepBtn = () => <Button title="Next" onPress={() => setFormStep(formStep + 1)} />;
+
     const renderFormStep = () => {
-        if (formStep < 1) return (
-            <DynamicList navigation={navigation} route={route} />
+        if (formStep == 1) return (
+            <View>
+                <TextInput
+                    placeholder="Enter a name for the recipe"
+                    value={recipeName}
+                    onChangeText={text => setRecpeName(text)}
+                />
+                <NextStepBtn />
+            </View>
         );
-        if (formStep < 2) return (
-            <TextInput
-                placeholder="Enter a name for the recipe"
-                value={recipeName}
-                onChangeText={text => setRecpeName(text)}
-            />
-        );
+        // TODO make step btns render in under list along with textinput
         if (formStep == 2) return (
-            // Use some input that can add multiple items
-            <TextInput
-                placeholder="Enter ingredients"
-                value={ingredients}
-                onChangeText={text => setIngredients(text)}
-            />
+            <View>
+                <DynamicList
+                    navigation={navigation}
+                    route={route}
+                    textList={ingredientsList}
+                    setTextList={setIngredientsList}
+                />
+                <NextStepBtn />
+                <PrevStepBtn />
+            </View>
         );
         if (formStep == 3) return (
-            // Use some input that can add multiple items
-            <TextInput
-                placeholder="Enter steps"
-                value={steps}
-                onChangeText={text => setSteps(text)}
-            />
+            <View>
+                <DynamicList
+                    navigation={navigation}
+                    route={route}
+                    textList={stepsList}
+                    setTextList={setStepsList}
+                />
+                <NextStepBtn />
+                <PrevStepBtn />
+            </View>
         );
-        if (formStep > 3) return (
+        if (formStep == 4) return (
             <View>
                 <Text>Review New Recipe</Text>
                 <Text>Name: { recipeName }</Text>
-                <Text>Ingredients: { ingredients }</Text>
-                <Text>Steps: { steps }</Text>
+                <Text>Ingredients: { ingredientsList }</Text>
+                <Text>Steps: { stepsList }</Text>
                 <Button title="Submit Recipe" onPress={handleSubmit} />
+                <PrevStepBtn />
             </View>
         );
     };
@@ -62,14 +76,6 @@ const AddRecipeScreen = ({ navigation, route }) => {
     return (
         <RootView>
             { renderFormStep() }
-            <Button
-                title="Next"
-                onPress={() => setFormStep(formStep + 1)}
-            />
-            <Button
-                title="Back"
-                onPress={() => setFormStep(formStep - 1)}
-            />
         </RootView>
     );
 };

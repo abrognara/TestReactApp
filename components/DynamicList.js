@@ -12,11 +12,10 @@ import DynamicListItem from './DynamicListItem';
     + Can select rows of input to edit/delete them from the list
 */
 const DynamicList = props => {
-    const [textInStack, setTextInStack] = useState([]);
     const [input, setInput] = useState('');
 
     const addListItem = () => {
-        setTextInStack([ ...textInStack, input ]);
+        props.setTextList([ ...props.textList, input ]);
         setInput(''); // clear input
     };
 
@@ -27,16 +26,16 @@ const DynamicList = props => {
         if (submitUpdate) {
             // is there a way to do this update without creating a new array?
             const { idx, updatedText } = submitUpdate;
-            let textInStackCopy = [...textInStack];
-            textInStackCopy[idx] = updatedText;
-            setTextInStack(textInStackCopy);
+            let textListCopy = [...props.textList];
+            textListCopy[idx] = updatedText;
+            props.setTextList(textListCopy);
             props.navigation.setParams({ submitUpdate: null });
         }
         else if (submitDelete) {
             const { idx } = submitDelete;
-            let textInStackCopy = [...textInStack];
-            textInStackCopy.splice(idx, 1);
-            setTextInStack(textInStackCopy);
+            let textListCopy = [...props.textList];
+            textListCopy.splice(idx, 1);
+            props.setTextList(textListCopy);
             props.navigation.setParams({ submitDelete: null });
         }
     }, [props.route.params?.submitUpdate, props.route.params?.submitDelete]);
@@ -50,7 +49,7 @@ const DynamicList = props => {
 
     const renderItem = ({ index }) => {
         return <DynamicListItem 
-            text={textInStack[index]} 
+            text={props.textList[index]} 
             stackIdx={index}
             navigation={props.navigation}
         />
@@ -61,10 +60,10 @@ const DynamicList = props => {
         // try and anchor TextInput to bottom of screen but move up with keyboard when selected
         <View>
             <VirtualizedList
-                data={textInStack}
+                data={props.textList}
                 getItem={getItem}
                 renderItem={renderItem}
-                getItemCount={() => textInStack.length}
+                getItemCount={() => props.textList.length}
             />
             <View>
                 <TextInput
