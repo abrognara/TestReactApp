@@ -12,13 +12,6 @@ import DynamicListItem from './DynamicListItem';
     + Can select rows of input to edit/delete them from the list
 */
 const DynamicList = props => {
-    const [input, setInput] = useState('');
-
-    const addListItem = () => {
-        props.setTextList([ ...props.textList, input ]);
-        setInput(''); // clear input
-    };
-
     useEffect(() => {
         const submitUpdate = props.route.params?.submitUpdate;
         const submitDelete = props.route.params?.submitDelete;
@@ -65,14 +58,6 @@ const DynamicList = props => {
                 renderItem={renderItem}
                 getItemCount={() => props.textList.length}
             />
-            <View>
-                <TextInput
-                    value={input}
-                    onChangeText={text => setInput(text)}
-                    placeholder="Enter something"
-                    onSubmitEditing={_ => addListItem()}
-                />
-            </View>
         </View>
     );
 };

@@ -8,6 +8,7 @@ import {
     Button
 } from 'react-native';
 import DynamicList from './DynamicList';
+import TextInputDynamicList from './TextInputDynamicList';
 
 const AddRecipeScreen = ({ navigation, route }) => {
     const [formStep, setFormStep] = useState(1);
@@ -39,11 +40,12 @@ const AddRecipeScreen = ({ navigation, route }) => {
         // TODO make step btns render in under list along with textinput
         if (formStep == 2) return (
             <View>
-                <DynamicList
+                <TextInputDynamicList
                     navigation={navigation}
                     route={route}
                     textList={ingredientsList}
                     setTextList={setIngredientsList}
+                    placeholder="Add an Ingredient"
                 />
                 <NextStepBtn />
                 <PrevStepBtn />
@@ -51,11 +53,12 @@ const AddRecipeScreen = ({ navigation, route }) => {
         );
         if (formStep == 3) return (
             <View>
-                <DynamicList
+                <TextInputDynamicList
                     navigation={navigation}
                     route={route}
                     textList={stepsList}
                     setTextList={setStepsList}
+                    placeholder="Add a Step"
                 />
                 <NextStepBtn />
                 <PrevStepBtn />
