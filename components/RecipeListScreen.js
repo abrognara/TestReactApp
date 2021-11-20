@@ -17,7 +17,7 @@ const RecipeListScreen = ({ navigation }) => {
     });
 
     const Row = ({ text }) => (
-        <TouchableHighlight onPress={() => navigation.navigate('RecipeScreen', { key: text })}>
+        <TouchableHighlight onPress={() => navigation.navigate('RecipeDetailsScreen', { key: text })}>
             <View style={{ backgroundColor: '#ffffff', height: 50, borderBottomWidth: 2 }}>
                 <Text style={{ fontSize: 24 }}>{ text }</Text>
             </View>
