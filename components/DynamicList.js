@@ -12,6 +12,7 @@ import DynamicListItem from './DynamicListItem';
     + Can select rows of input to edit/delete them from the list
 */
 const DynamicList = props => {
+    // TODO for non-editable list, should be no logic related to setTextList
     useEffect(() => {
         const submitUpdate = props.route.params?.submitUpdate;
         const submitDelete = props.route.params?.submitDelete;
@@ -40,11 +41,19 @@ const DynamicList = props => {
         });
     };
 
+    // TODO (case 1) can make a wrapper on top of EditableListItemScreen i.e. EditableRecipeDetails...
+    // TODO (case 2) should be a generic details screen - RecipeDetailsScreen can be a wrapper
     const renderItem = ({ index }) => {
         return <DynamicListItem 
-            text={props.textList[index]} 
-            stackIdx={index}
-            navigation={props.navigation}
+            text={props.textList[index]}
+            onPressNavigateFn={props.editable ? 
+                () => props.navigation.navigate('EditableListItemScreen', 
+                { 
+                    text: props.textList[index],
+                    stackIdx: index
+                }) : 
+                () => props.navigation.navigate('RecipeDetailsScreen', { key: props.textList[index] })
+            }
         />
     };
     // **** ****

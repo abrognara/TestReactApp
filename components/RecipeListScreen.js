@@ -3,26 +3,14 @@ import { VirtualizedList, Text, View, TouchableHighlight } from 'react-native';
 import GenericAddItemView from './GenericAddItemView';
 import RootView from './RootView';
 import { DatastoreContext } from './datastore-context';
+import DynamicList from './DynamicList';
 
-const RecipeListScreen = ({ navigation }) => {
+const RecipeListScreen = ({ navigation, route }) => {
     const mockRecipes = {
         'Spaghetti and Meatballs': {}
     };
 
     const recipeKeys = Object.keys(mockRecipes);
-
-    const getItem = (data, index) => ({
-        id: Math.random().toString(12).substring(0),
-        recipeName: recipeKeys[index]
-    });
-
-    const Row = ({ text }) => (
-        <TouchableHighlight onPress={() => navigation.navigate('RecipeDetailsScreen', { key: text })}>
-            <View style={{ backgroundColor: '#ffffff', height: 50, borderBottomWidth: 2 }}>
-                <Text style={{ fontSize: 24 }}>{ text }</Text>
-            </View>
-        </TouchableHighlight>
-    );
 
     // TODO make DynamicList a parent component of this
     return (
@@ -30,11 +18,12 @@ const RecipeListScreen = ({ navigation }) => {
             {datastore => (
                 <RootView>
                     <GenericAddItemView usingAddItemScreen="AddRecipeScreen" navigation={navigation}>
-                        <VirtualizedList
-                            data={recipeKeys}
-                            getItem={getItem}
-                            renderItem={({ item }) => <Row text={item.recipeName} />}
-                            getItemCount={() => recipeKeys.length}
+                        <DynamicList
+                            navigation={navigation}
+                            route={route}
+                            setTextList={null}
+                            textList={recipeKeys}
+                            editable={false}
                         />
                     </GenericAddItemView>
                 </RootView>

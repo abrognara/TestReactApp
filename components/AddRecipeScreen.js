@@ -46,6 +46,7 @@ const AddRecipeScreen = ({ navigation, route }) => {
                     textList={ingredientsList}
                     setTextList={setIngredientsList}
                     placeholder="Add an Ingredient"
+                    editable
                 />
                 <NextStepBtn />
                 <PrevStepBtn />
@@ -59,6 +60,7 @@ const AddRecipeScreen = ({ navigation, route }) => {
                     textList={stepsList}
                     setTextList={setStepsList}
                     placeholder="Add a Step"
+                    editable
                 />
                 <NextStepBtn />
                 <PrevStepBtn />

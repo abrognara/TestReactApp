@@ -8,7 +8,7 @@ import DynamicList from './DynamicList';
     + TextInput to add user input in a growable list
     + Can select rows of input to edit/delete them from the list
 */
-const TextInputDynamicList = ({ navigation, route, textList, setTextList, placeholder }) => {
+const TextInputDynamicList = ({ navigation, route, textList, setTextList, placeholder, editable }) => {
     const [input, setInput] = useState('');
 
     const addListItem = () => {
@@ -24,6 +24,7 @@ const TextInputDynamicList = ({ navigation, route, textList, setTextList, placeh
                 route={route}
                 setTextList={setTextList}
                 textList={textList}
+                editable={editable}
             />
             <View>
                 <TextInput
