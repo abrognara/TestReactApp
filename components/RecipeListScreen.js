@@ -1,8 +1,7 @@
 import React from 'react';
 import { VirtualizedList, Text, View, TouchableHighlight } from 'react-native';
-import GenericAddItemView from './GenericAddItemView';
+import HeaderView from './HeaderView';
 import RootView from './RootView';
-import { DatastoreContext } from './datastore-context';
 import DynamicList from './DynamicList';
 
 const RecipeListScreen = ({ navigation, route }) => {
@@ -13,22 +12,23 @@ const RecipeListScreen = ({ navigation, route }) => {
     const recipeKeys = Object.keys(mockRecipes);
 
     return (
-        <DatastoreContext.Consumer>
-            {datastore => (
-                <RootView>
-                    <GenericAddItemView usingAddItemScreen="AddRecipeScreen" navigation={navigation}>
-                        <DynamicList
-                            navigation={navigation}
-                            route={route}
-                            setTextList={null}
-                            textList={recipeKeys}
-                            editable={false}
-                        />
-                    </GenericAddItemView>
-                </RootView>
-            )}
-
-        </DatastoreContext.Consumer>
+        <RootView>
+            <HeaderView
+                navigation={navigation}
+                headerRight={{
+                    btnTitle: "Add",
+                    destScreenName: "AddRecipeScreen"
+                }}
+            >
+                <DynamicList
+                    navigation={navigation}
+                    route={route}
+                    setTextList={null}
+                    textList={recipeKeys}
+                    editable={false}
+                />
+            </HeaderView>
+        </RootView>
     );
 };
 

@@ -2,14 +2,9 @@ import React, { useEffect } from 'react';
 
 import { View, Text } from 'react-native';
 import { DatastoreContext } from './datastore-context';
+import HeaderView from './HeaderView';
 
-const RecipeScreen = ({ route, navigation }) => {
-    useEffect(() => {
-        if (route.params?.objToUpdate) {
-            // update datastore
-        }
-    }, [route.params?.objToUpdate]);
-
+const RecipeDetailsScreen = ({ navigation, route }) => {
     const { key } = route.params; // use key to fetch recipe from datastore
 
     return (
@@ -17,17 +12,31 @@ const RecipeScreen = ({ route, navigation }) => {
             {datastore => {
                 const { ingredients, steps } = datastore.getRecipe(key);
                 return (
-                    <View>
+                    // TODO does it make sense to send over name + lists over params? (useContext instead?)
+                    <HeaderView
+                        navigation={navigation}
+                        headerRight={{
+                            btnTitle: "Edit",
+                            destScreenName: "AddRecipeScreen",
+                            params: {
+                                defaultValues: {
+                                    recipeName: key, 
+                                    stepsList: steps,
+                                    ingredientsList: ingredients
+                                }
+                            }
+                        }}
+                    >
                         <Text>This is a recipe for { key }</Text>
                         <Text>Ingredients</Text>
                         <Text>{ ingredients }</Text>
                         <Text>Steps</Text>
                         <Text>{ steps }</Text>
-                    </View>
+                    </HeaderView>
                 );
             }}
         </DatastoreContext.Consumer>
     );
 };
 
-export default RecipeScreen;
+export default RecipeDetailsScreen;

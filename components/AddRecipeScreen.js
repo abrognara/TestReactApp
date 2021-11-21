@@ -7,14 +7,22 @@ import {
     StyleSheet,
     Button
 } from 'react-native';
-import DynamicList from './DynamicList';
 import TextInputDynamicList from './TextInputDynamicList';
 
 const AddRecipeScreen = ({ navigation, route }) => {
     const [formStep, setFormStep] = useState(1);
-    const [recipeName, setRecpeName] = useState('');
+    const [recipeName, setRecipeName] = useState('');
     const [stepsList, setStepsList] = useState([]); // use as props to DynamicList for steps
     const [ingredientsList, setIngredientsList] = useState([]); // use as props to DynamicList for steps
+
+    useEffect(() => {
+        if (route.params?.defaultValues) {
+            const { recipeName, stepsList, ingredientsList } = route.params.defaultValues;
+            setRecipeName(recipeName);
+            setStepsList(stepsList);
+            setIngredientsList(ingredientsList);
+        }        
+    }, [route.params?.defaultValues]);
 
     const handleSubmit = () => {
         console.log(recipeName);
@@ -32,7 +40,7 @@ const AddRecipeScreen = ({ navigation, route }) => {
                 <TextInput
                     placeholder="Enter a name for the recipe"
                     value={recipeName}
-                    onChangeText={text => setRecpeName(text)}
+                    onChangeText={text => setRecipeName(text)}
                 />
                 <NextStepBtn />
             </View>
