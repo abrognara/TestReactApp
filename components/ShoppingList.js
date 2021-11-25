@@ -24,12 +24,18 @@ const ShoppingList = ({ navigation }) => {
             {datastore => {
                 const data = datastore.readAll();
                 return (
-                    <RootView>
+                    <HeaderView
+                        navigation={navigation}
+                        headerRight={{
+                            btnTitle: "Add",
+                            destScreenName: "AddIngredientScreen"
+                        }}
+                    >
                         <StaticTable
                             title="Ingredients"
                             data={data.ingredients}
                         />
-                    </RootView>
+                    </HeaderView>
                 )}
             }
         </DatastoreContext.Consumer>

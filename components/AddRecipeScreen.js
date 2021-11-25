@@ -8,8 +8,10 @@ import {
     Button
 } from 'react-native';
 import TextInputDynamicList from './TextInputDynamicList';
+import { DatastoreContext } from './datastore-context';
 
 const AddRecipeScreen = ({ navigation, route }) => {
+    let datastore = null;
     const [formStep, setFormStep] = useState(1);
     const [recipeName, setRecipeName] = useState('');
     const [stepsList, setStepsList] = useState([]); // use as props to DynamicList for steps
@@ -25,9 +27,8 @@ const AddRecipeScreen = ({ navigation, route }) => {
     }, [route.params?.defaultValues]);
 
     const handleSubmit = () => {
-        console.log(recipeName);
-        // do submit to datastore
-        navigation.goBack();
+        if (datastore) datastore.addRecipe(recipeName, ingredientsList, stepsList);
+        navigation.goBack(); // add param: updated? bool
     };
 
     const PrevStepBtn = () => <Button title="Back" onPress={() => setFormStep(formStep - 1)} />;
@@ -87,9 +88,16 @@ const AddRecipeScreen = ({ navigation, route }) => {
     };
 
     return (
-        <RootView>
-            { renderFormStep() }
-        </RootView>
+        <DatastoreContext.Consumer>
+            {dstore => {
+                datastore = dstore;
+                return (
+                    <RootView>
+                        { renderFormStep() }
+                    </RootView>
+                );
+            }}
+        </DatastoreContext.Consumer>
     );
 };
 
