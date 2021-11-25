@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DatastoreContext } from './datastore-context';
-import RootView from './RootView';
+import HeaderView from './HeaderView';
 import StaticTable from './StaticTable';
 
 import {
@@ -10,15 +10,6 @@ import {
 } from 'react-native';
 
 const ShoppingList = ({ navigation }) => {
-
-    useEffect(() => {
-        navigation.setOptions({
-            headerRight: () => (
-                <Button title="+" onPress={() => navigation.navigate('AddRecipeScreen')} />
-            )
-        });
-    }, [navigation]);
-
     return (
         <DatastoreContext.Consumer>
             {datastore => {

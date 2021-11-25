@@ -19,6 +19,7 @@ import { useColorScheme } from 'react-native';
 import AddRecipeScreen from './components/AddRecipeScreen';
 import RecipeDetailsScreen from './components/RecipeDetailsScreen';
 import EditableListItemScreen from './components/EditableListItemScreen';
+import AddIngredientScreen from './components/AddIngredientScreen'
 
 const Stack = createNativeStackNavigator();
 const datastore = new Datastore();
@@ -39,6 +40,7 @@ const App: () => Node = () => {
             <Stack.Screen name="EditableListItemScreen" component={ EditableListItemScreen } />
             {/* <Stack.Group screenOptions={{ presentation: 'modal' }}> */}
               <Stack.Screen name="AddRecipeScreen" component={ AddRecipeScreen } />
+              <Stack.Screen name="AddIngredientScreen" component={ AddIngredientScreen } />
             {/* </Stack.Group> */}
           </Stack.Navigator>
         </DatastoreContext.Provider>
