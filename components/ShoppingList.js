@@ -22,6 +22,7 @@ const ShoppingList = ({ navigation }) => {
         <DatastoreContext.Consumer>
             {datastore => {
                 const data = datastore.readAll();
+                // TODO datastore should cache /ingredients for retrieval here
                 return (
                     <HeaderView
                         navigation={navigation}
