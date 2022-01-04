@@ -10,6 +10,14 @@ import {
 } from 'react-native';
 
 const ShoppingList = ({ navigation }) => {
+
+    const fetchIngredients = () => {
+        // test get ingredients from mysql table
+        fetch('https://sandros-recipe-app.herokuapp.com/ingredients')
+            .then(res => res.json())
+            .then(data => console.log(data));
+    };
+
     return (
         <DatastoreContext.Consumer>
             {datastore => {
@@ -26,6 +34,7 @@ const ShoppingList = ({ navigation }) => {
                             title="Ingredients"
                             data={data.ingredients}
                         />
+                        <Button title="Test GET /ingredients" onPress={fetchIngredients} />
                     </HeaderView>
                 )}
             }
