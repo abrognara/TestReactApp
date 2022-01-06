@@ -12,23 +12,16 @@ import {
 // This component will show list of aggregated ingredients needed for all recipes within 
 // the active schedule. Users can also add other ingredients.
 const ShoppingList = ({ navigation, route }) => {
-    const { ingredients, err } = useFetchCache('https://sandros-recipe-app.herokuapp.com/ingredients');
+    const { data, err } = useFetchCache('https://sandros-recipe-app.herokuapp.com/ingredients');
 
     const getIngredientNames = () => {
+        console.log(`response from hook: ${JSON.stringify(data)}`);
         if (err) {
             console.log(`Failed to fetch ingredients, status = ${err.status}, msg = ${err.statusText}`);
             return [];
         }
-        console.log(`fetched ingredients: ${JSON.stringify(ingredients)}`);
-        return ingredients ? ingredients.map(i => i.name) : [];
+        return data ? data.map(i => i.name) : [];
     }
-
-    // const fetchIngredients = () => {
-    //     // test get ingredients from mysql table
-    //     fetch('https://sandros-recipe-app.herokuapp.com/ingredients')
-    //         .then(res => res.json())
-    //         .then(data => console.log(data));
-    // };
 
     return (
         <HeaderView

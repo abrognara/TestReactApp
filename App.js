@@ -34,7 +34,8 @@ const datastore = new Datastore();
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  console.log(`fetched ingredients for caching: ${fetch('https://sandros-recipe-app.herokuapp.com/ingredients')}`);
+  // console.log(`fetched ingredients for caching: ${fetch('https://sandros-recipe-app.herokuapp.com/ingredients')}`);
+  datastore.setIngredients(fetch('https://sandros-recipe-app.herokuapp.com/ingredients'));
   
   return (
     <NavigationContainer>

@@ -10,19 +10,17 @@ const useFetchCache = endpoint => {
 
         const doFetch = async () => {
             if (cache.current[endpoint]) {
-                console.log(`pulling from cache ${JSON.stringify(cache.current[endpoint])}`);
+                console.log(`pulling from cache $$$`); // debug
                 setData(cache.current[endpoint]);
                 setErr(null);
             }
             else {
                 const res = await fetch(endpoint);
-                console.log(`res = ${JSON.stringify(res)}`);
                 if (!res.ok) {
                     setErr({ status: res.status, statusText: res.statusText });
                 }
                 else {
                     const data = await res.json();
-                    console.log(`data = ${JSON.stringify(data)}`);
                     cache.current[endpoint] = data;
                     setData(data);
                     setErr(null);
@@ -33,6 +31,7 @@ const useFetchCache = endpoint => {
         doFetch();
     }, [endpoint]);
 
+    console.log(`inside hook: ${JSON.stringify({ data, err })}`); // debug
     return { data, err };
 };
 
