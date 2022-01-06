@@ -8,9 +8,19 @@ export default class Datastore {
                     steps: ["Step1", "Step 2", "Step3"]
                 }
             },
-            ingredients: ["Olive Oil", "Minced Garlic", "Salt", "Pepper"],
             steps: ["Preheat oven to 400F", "Chop asparagus and add to bowl", "Add olive oil to bowl"]
         };
+        this.ingredients = [];
+    }
+
+    // cache ingredients from db
+    setIngredients(ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    // get cached ingredients
+    getIngredients() {
+        return this.ingredients;
     }
 
     // recipeName = string

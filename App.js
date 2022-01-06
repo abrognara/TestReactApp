@@ -24,8 +24,18 @@ import AddIngredientScreen from './components/AddIngredientScreen'
 const Stack = createNativeStackNavigator();
 const datastore = new Datastore();
 
+// fetch('https://sandros-recipe-app.herokuapp.com/ingredients')
+//   .then(res => res.json())
+//   .then(data => {
+//     console.log(`fetched ingredients for caching: ${JSON.stringify(data)}`);
+//     datastore.setIngredients(data);
+//   });
+
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  console.log(`fetched ingredients for caching: ${fetch('https://sandros-recipe-app.herokuapp.com/ingredients')}`);
+  
   return (
     <NavigationContainer>
       <ThemeContext.Provider value={ isDarkMode ? themes.dark : themes.light }>
